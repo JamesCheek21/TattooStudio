@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name ="viewport" content="width=device-width, intitial-scale=1.0">
   <title>Living Colour</title>
 
   <!-- stylesheet -->
@@ -14,6 +15,8 @@
   <!-- bootstrap cdns -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -47,31 +50,83 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-2">
+        <div class="col-lg-1">
         </div>
-        <div class="col-lg-6">
-          <div class="slider">
-            <div class="slides">
-              <img class ="slide" src="assets/gallery/photo2.jpg">
-              <img class ="slide" src="assets/gallery/photo3.jpg">
-              <img class ="slide" src="assets/gallery/photo1.jpg">
+        <div class="col-lg-12">
+          <div class="gallery-section">
+            <div class="inner-width">
+              <h1>Our Work</h1>
+              <div class="border"></div>
+              <div class="gallery" id="gallery">
+                <a href="assets/1.png" class="image">
+                  <img src="assets/1.png" alt="">
+                </a>
+                <a href="assets/2.png" class="image">
+                  <img src="assets/2.png" alt="">
+                </a>
+                <a href="assets/3.png" class="image">
+                  <img src="assets/3.png" alt="">
+                </a>
+                <a href="assets/4.png" class="image">
+                  <img src="assets/4.png" alt="">
+                </a>
+                <a href="assets/5.png" class="image">
+                  <img src="assets/5.png" alt="">
+                </a>
+                <a href="assets/6.png" class="image">
+                  <img src="assets/6.png" alt="">
+                </a>
+                <a href="assets/7.png" class="image">
+                  <img src="assets/7.png" alt="">
+                </a>
+                <a href="assets/8.png" class="image">
+                  <img src="assets/8.png" alt="">
+                </a>
+
+                <a href="assets/1.jpg" class="image">
+                  <img src="assets/1.jpg" alt="">
+                </a>
+                <a href="assets/2.jpg" class="image">
+                  <img src="assets/2.jpg" alt="">
+                </a>
+                <a href="assets/3.jpg" class="image">
+                  <img src="assets/3.jpg" alt="">
+                </a>
+                <a href="assets/4.jpg" class="image">
+                  <img src="assets/4.jpg" alt="">
+                </a>
+                <a href="assets/5.jpg" class="image">
+                  <img src="assets/5.jpg" alt="">
+                </a>
+                <a href="assets/6.jpg" class="image">
+                  <img src="assets/6.jpg" alt="">
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-1">
         </div>
       </div>
     </div>
   </div>
   <!-- end of wrapper !-->
 
-  <<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="https://code.jquery.com/jquery-migrate-3.1.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/slick/slick.min.js"></script>
 
   <script type="text/javascript">
+  $(".gallery").magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    gallery:{
+      enabled: true
+    }
+  });
     $("#toggle").click(function() {
       $(this).toggleClass('on');
       $("#resize").toggleClass("active");
@@ -92,6 +147,11 @@
       ease: Expo.easeInOut
     })
     TweenMax.staggerFrom("#menu li a", 1, {
+      delay: 0.4,
+      opacity: 0,
+      ease: Expo.easeInOut
+    }, 0.1);
+    TweenMax.from("#gallery a img", 1, {
       delay: 0.4,
       opacity: 0,
       ease: Expo.easeInOut
