@@ -16,6 +16,10 @@ html, body{
   .whitespace{
     display: none;
   }
+
+  .map{
+    width: 100%;
+  }
 }
 
 nav{
@@ -186,10 +190,18 @@ nav #menu li a:hover {
     display: none;
   }
 
+  .map {
+    width: 100%;
+  }
+
 }
 @media(min-width: 768px){
   #resize {
     visibility: hidden !important;
+  }
+
+  .map{
+    width: 80%;
   }
 }
 
@@ -243,9 +255,15 @@ nav #menu li a:hover {
   .gallery-section .image{
     flex: 100%;
   }
-
 }
 
 .artistdesc{
   padding: 20px;
+}
+.map{
+  height: 500px;
+  padding-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
