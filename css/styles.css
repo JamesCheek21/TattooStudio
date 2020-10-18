@@ -69,7 +69,7 @@ nav #menu li{
   transition: all 0.3s ease-out;
 }
 nav #menu li a{
-  color: #000000;
+  color: #0f0f0f;
 }
 
 nav #menu li a:hover {
@@ -88,7 +88,7 @@ nav #menu li a:hover {
   transition: all 0.3s ease-out;
   visibility: hidden;
   opacity:0;
-  color: #000000
+  color: #0f0f0f;
 }
 
 .close-btn{
@@ -99,7 +99,7 @@ nav #menu li a:hover {
   cursor: pointer;
   top: -2px;
   line-height: 80px;
-  color: #000000;
+  color: #0f0f0f;
 }
 
 #resize{
@@ -145,7 +145,7 @@ nav #menu li a:hover {
 }
 
 #resize #menu li a{
- color: #000000;
+ color: #0f0f0f;
 }
 #resize #menu li:hover {
  text-decoration: none;
@@ -207,7 +207,7 @@ nav #menu li a:hover {
 
 .gallery-section{
   width:100%;
-  padding: 60px 0;
+  padding: 20px 0;
 }
 .inner-width{
   width: 100%;
@@ -218,7 +218,6 @@ nav #menu li a:hover {
 .gallery-section h1{
   text-align: center;
   text-transform: uppercase;
-  color: #333;
 }
 .gallery{
   padding-top: 10px;
@@ -257,6 +256,40 @@ nav #menu li a:hover {
   }
 }
 
+.artists-section{
+  text-align: center;
+  padding: 20px 0;
+}
+.artists-section .artists{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.artists-section h1{
+  text-align: center;
+  text-transform: uppercase;
+}
+.artist{
+  float:left;
+  width: calc(100% / 5);
+  overflow: hidden;
+  padding: 20px 0;
+  color: #0f0f0f;
+}
+.artist:hover{
+  text-decoration: none;
+  background-color: #0f0f0f;
+  color: #fff;
+  transition: 0.6s;
+}
+.artist img{
+  width: 200px;
+  height: 200px;
+}
+.a-name{
+  margin-top: 10px;
+  font-size: 1.2em;
+}
 .artistdesc{
   padding: 20px;
 }
