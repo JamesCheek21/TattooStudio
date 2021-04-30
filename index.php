@@ -25,28 +25,14 @@
 
     <!-- start of nav !-->
     <nav>
-      <a href="index.php"><span id="brand"><img src="assets/logo.jpg" alt="logo"></span></a>
-
-      <ul id="menu">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="artistslct.php">Artists</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="reviews.html">Reviews</a></li>
-      </ul>
-
+      <?php include_once 'nav.php' ?>
       <div id="toggle">
         <div class="span"><i class="fas fa-bars"></i></div>
       </div>
     </nav>
     <div id="resize">
       <div class="close-btn">Close</div>
-
-      <ul id="menu">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="artistslct.php">Artists</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="reviews.html">Reviews</a></li>
-      </ul>
+      <?php include_once 'mobilenav.php' ?>
     </div>
     <div class="container-fluid">
       <div class="row">

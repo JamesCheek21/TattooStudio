@@ -55,4 +55,5 @@ if(isset($_POST['submit'])){
       exit();
     }
   }
+  header("Location: ../index.php?uploadsuccess");
 }
