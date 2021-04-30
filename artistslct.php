@@ -25,11 +25,11 @@
 
     <!-- start of nav !-->
     <nav>
-      <a href="index.html"><span id="brand"><img src="assets/logo.jpg" alt="logo"></span></a>
+      <a href="index.php"><span id="brand"><img src="assets/logo.jpg" alt="logo"></span></a>
 
       <ul id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="artistslct.html">Artists</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="artistslct.php">Artists</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="reviews.html">Reviews</a></li>
       </ul>
@@ -42,8 +42,8 @@
       <div class="close-btn">Close</div>
 
       <ul id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="artistslct.html">Artists</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="artistslct.php">Artists</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="reviews.html">Reviews</a></li>
       </ul>
@@ -52,73 +52,32 @@
       <div class="row">
         <div class="col-lg-1">
         </div>
-        <div class="col-lg-3">
-          <div class="artistimg">
-            <img>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div class="artistdesc">
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et nulla malesuada, pulvinar justo vitae, tempor dui. Maecenas vehicula tristique aliquam. Vivamus eu tortor varius, vulputate arcu sed, viverra magna. Cras pretium est non sapien lacinia, at maximus dolor viverra. Aliquam enim lacus, ultricies non tortor a, euismod dictum urna. Fusce vulputate hendrerit feugiat. Praesent a eleifend urna. Sed varius tincidunt diam nec gravida. Duis pharetra gravida est at consequat. Aenean interdum, mauris id consectetur pharetra, ligula nisi volutpat lacus, sed porta nisl ligula ut nibh. Etiam hendrerit, magna id elementum tempus, metus nibh consequat nibh, sit amet consequat ex odio in erat. Vivamus gravida sit amet est sed tempus. Proin at commodo risus. Suspendisse massa enim, tristique eget enim vel, ullamcorper mollis ex. Proin vulputate efficitur pretium. Praesent scelerisque elit ligula.
-          </p>
-          </div>
-        </div>
-        <div class="col-lg-1">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-1">
-        </div>
         <div class="col-lg-10">
-          <div class="gallery-section">
+          <div class="artists-section">
             <div class="inner-width">
-              <h1>Our Work</h1>
+              <h1>Our Team</h1>
               <div class="border"></div>
-              <div class="gallery" id="gallery">
-                <a href="assets/1.png" class="image">
-                  <img src="assets/1.png" alt="">
-                </a>
-                <a href="assets/2.png" class="image">
-                  <img src="assets/2.png" alt="">
-                </a>
-                <a href="assets/3.png" class="image">
-                  <img src="assets/3.png" alt="">
-                </a>
-                <a href="assets/4.png" class="image">
-                  <img src="assets/4.png" alt="">
-                </a>
-                <a href="assets/5.png" class="image">
-                  <img src="assets/5.png" alt="">
-                </a>
-                <a href="assets/6.png" class="image">
-                  <img src="assets/6.png" alt="">
-                </a>
-                <a href="assets/7.png" class="image">
-                  <img src="assets/7.png" alt="">
-                </a>
-                <a href="assets/8.png" class="image">
-                  <img src="assets/8.png" alt="">
-                </a>
+              <div class="artists">
+                <?php
+                  include_once 'includes/dbconnect.php';
+                  $sql = "SELECT * FROM artists";
+                  $stmt = mysqli_stmt_init($conn);
 
-                <a href="assets/1.jpg" class="image">
-                  <img src="assets/1.jpg" alt="">
-                </a>
-                <a href="assets/2.jpg" class="image">
-                  <img src="assets/2.jpg" alt="">
-                </a>
-                <a href="assets/3.jpg" class="image">
-                  <img src="assets/3.jpg" alt="">
-                </a>
-                <a href="assets/4.jpg" class="image">
-                  <img src="assets/4.jpg" alt="">
-                </a>
-                <a href="assets/5.jpg" class="image">
-                  <img src="assets/5.jpg" alt="">
-                </a>
-                <a href="assets/6.jpg" class="image">
-                  <img src="assets/6.jpg" alt="">
-                </a>
+                  if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    echo "SQL statement failed";
+                  } else {
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo '
+                        <a class="artist" href="artist.php?id='.$row['artistID'].'">
+                          <img src="assets/'.$row["picture"].'" alt="">
+                          <div class="a-name">'.$row["firstname"]. " " .$row["lastname"].'</div>
+                          <div class="a-job">'.$row["artisttype"].'</div>
+                        </a>';
+                      }
+                    }
+                ?>
               </div>
             </div>
           </div>

@@ -224,7 +224,7 @@ nav #menu li a:hover {
 }
 .gallery-section .gallery{
   display: flex;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   justify-content: center;
 }
 

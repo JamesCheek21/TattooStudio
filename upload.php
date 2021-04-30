@@ -1,5 +1,5 @@
 <?php
-require "dbconnect.php"; ?>
+require "includes/dbconnect.php"; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -30,8 +30,8 @@ require "dbconnect.php"; ?>
       <a href="index.html"><span id="brand"><img src="assets/logo.jpg" alt="logo"></span></a>
 
       <ul id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="artistslct.html">Artists</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="artistslct.php">Artists</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="reviews.html">Reviews</a></li>
       </ul>
@@ -44,8 +44,8 @@ require "dbconnect.php"; ?>
       <div class="close-btn">Close</div>
 
       <ul id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="artistslct.html">Artists</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="artistslct.php">Artists</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="reviews.html">Reviews</a></li>
       </ul>
@@ -59,12 +59,23 @@ require "dbconnect.php"; ?>
             <form action="includes/gallery-upload.inc.php" method="post" enctype="multipart/form-data">
               <label for="artistSelect">Artist:</label>
               <select name="artist" class="form-control" id="artistSelect">
-                <option>Sophie</option>
-                <option>Jessica</option>
-                <option>Erica</option>
+                <?php
+                  $sql = "SELECT * FROM artists";
+                  $stmt = mysqli_stmt_init($conn);
+
+                  if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    echo "SQL statement failed";
+                  } else {
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo'<option value = "'.$row["artistID"].'">'.$row["firstname"]. " " .$row["lastname"].'</option>';
+                      }
+                    }
+                ?>
               </select>
               <br>
-              <input type="file" name="file">
+              <input type="file" name="file[]" multiple="multiple">
               <button type="submit" name="submit" class="btn btn-dark">UPLOAD</button>
             </form>
           </div>

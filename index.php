@@ -1,5 +1,3 @@
-<?php
-require "dbconnect.php"; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -27,11 +25,11 @@ require "dbconnect.php"; ?>
 
     <!-- start of nav !-->
     <nav>
-      <a href="index.html"><span id="brand"><img src="assets/logo.jpg" alt="logo"></span></a>
+      <a href="index.php"><span id="brand"><img src="assets/logo.jpg" alt="logo"></span></a>
 
       <ul id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="artistslct.html">Artists</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="artistslct.php">Artists</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="reviews.html">Reviews</a></li>
       </ul>
@@ -44,8 +42,8 @@ require "dbconnect.php"; ?>
       <div class="close-btn">Close</div>
 
       <ul id="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="artistslct.html">Artists</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="artistslct.php">Artists</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="reviews.html">Reviews</a></li>
       </ul>
@@ -60,49 +58,23 @@ require "dbconnect.php"; ?>
               <h1>Our Work</h1>
               <div class="border"></div>
               <div class="gallery" id="gallery">
-                <a href="assets/1.png" class="image">
-                  <img src="assets/1.png" alt="">
-                </a>
-                <a href="assets/2.png" class="image">
-                  <img src="assets/2.png" alt="">
-                </a>
-                <a href="assets/3.png" class="image">
-                  <img src="assets/3.png" alt="">
-                </a>
-                <a href="assets/4.png" class="image">
-                  <img src="assets/4.png" alt="">
-                </a>
-                <a href="assets/5.png" class="image">
-                  <img src="assets/5.png" alt="">
-                </a>
-                <a href="assets/6.png" class="image">
-                  <img src="assets/6.png" alt="">
-                </a>
-                <a href="assets/7.png" class="image">
-                  <img src="assets/7.png" alt="">
-                </a>
-                <a href="assets/8.png" class="image">
-                  <img src="assets/8.png" alt="">
-                </a>
+                <?php
+                include_once 'includes/dbconnect.php';
+                $sql = "SELECT * FROM pictures";
+                $stmt = mysqli_stmt_init($conn);
 
-                <a href="assets/1.jpg" class="image">
-                  <img src="assets/1.jpg" alt="">
-                </a>
-                <a href="assets/2.jpg" class="image">
-                  <img src="assets/2.jpg" alt="">
-                </a>
-                <a href="assets/3.jpg" class="image">
-                  <img src="assets/3.jpg" alt="">
-                </a>
-                <a href="assets/4.jpg" class="image">
-                  <img src="assets/4.jpg" alt="">
-                </a>
-                <a href="assets/5.jpg" class="image">
-                  <img src="assets/5.jpg" alt="">
-                </a>
-                <a href="assets/6.jpg" class="image">
-                  <img src="assets/6.jpg" alt="">
-                </a>
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                  echo "SQL statement failed";
+                } else {
+                  mysqli_stmt_execute($stmt);
+                  $result = mysqli_stmt_get_result($stmt);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<a href="assets/'.$row["filename"].'" class="image">
+                      <img src="assets/'.$row["filename"].'" >
+                    </a>';
+                  }
+                }
+                 ?>
               </div>
             </div>
           </div>
@@ -119,31 +91,25 @@ require "dbconnect.php"; ?>
               <h1>Our Team</h1>
               <div class="border"></div>
               <div class="artists">
-                <a class="artist" href="artist.html">
-                  <img src="" alt="">
-                  <div class="a-name">Full Name</div>
-                  <div class="a-job">Tattooist/Owner</div>
-                </a>
-                <div class="artist">
-                  <img src="" alt="">
-                  <div class="a-name">Full Name</div>
-                  <div class="a-job">Tattooist</div>
-                </div>
-                <div class="artist">
-                  <img src="" alt="">
-                  <div class="a-name">Full Name</div>
-                  <div class="a-job">Tattooist</div>
-                </div>
-                <div class="artist">
-                  <img src="" alt="">
-                  <div class="a-name">Full Name</div>
-                  <div class="a-job">Nail Tech</div>
-                </div>
-                <div class="artist">
-                  <img src="" alt="">
-                  <div class="a-name">Full Name</div>
-                  <div class="a-job">Nail Tech</div>
-                </div>
+                <?php
+                  $sql = "SELECT * FROM artists";
+                  $stmt = mysqli_stmt_init($conn);
+
+                  if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    echo "SQL statement failed";
+                  } else {
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo '
+                        <a class="artist" href="artist.php?id='.$row['artistID'].'">
+                          <img src="assets/'.$row["picture"].'" alt="">
+                          <div class="a-name">'.$row["firstname"]. " " .$row["lastname"].'</div>
+                          <div class="a-job">'.$row["artisttype"].'</div>
+                        </a>';
+                      }
+                    }
+                ?>
               </div>
             </div>
           </div>
